@@ -26,10 +26,12 @@ jobs:
     - name: Install sysdep
       run: |
         sudo apt update
-        sudo apt upgrade
         sudo apt install ffmpeg
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install --user Pillow argon2-cffi pyftpdlib pyopenssl mutagen
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run server
+      run: |
+         python -m copyparty-sfx.py
